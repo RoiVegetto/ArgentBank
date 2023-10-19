@@ -11,7 +11,7 @@ function User() {
   return (
     <>
       <Navbar logo="Images/argentBankLogo.png" />
-      <main class="main bg-dark">
+      <main className="main bg-dark">
         <Header />
         <Account 
             title="Argent Bank Checking (x8349)" 

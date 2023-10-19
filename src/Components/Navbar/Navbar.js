@@ -3,18 +3,18 @@ import './Navbar.css';
 
 function Navbar(props) {
   return (
-    <nav class="main-nav">
-      <a class="main-nav-logo" href="./index.html">
+    <nav className="main-nav">
+      <a className="main-nav-logo" href="./index.html">
         <img
-          class="main-nav-logo-image"
+          className="main-nav-logo-image"
           alt="Argent Bank Logo"
           src={props.logo}
         />
-        <h1 class="sr-only">Argent Bank</h1>
+        <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div>
-        <a class="main-nav-item" href="./sign-in.html">
-          <i class="fa fa-user-circle"></i>
+        <a className="main-nav-item" href="./sign-in.html">
+          <i className="fa fa-user-circle"></i>
           Sign In
         </a>
       </div>

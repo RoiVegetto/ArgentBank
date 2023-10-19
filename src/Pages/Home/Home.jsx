@@ -12,7 +12,7 @@ function Home() {
       <Navbar logo="Images/argentBankLogo.png" />
       <main>
         <Hero />
-      <section class="features">
+      <section className="features">
         <Features 
         url="../Images/icon-chat.png"
         titleItem="You are our #1 priority"
