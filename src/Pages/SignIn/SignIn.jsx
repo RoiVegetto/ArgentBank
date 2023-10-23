@@ -3,13 +3,13 @@ import Navbar from '../../Components/Navbar/Navbar';
 import SignInForm from '../../Components/SignInForm/SignInForm';
 import Footer from '../../Components/Footer/Footer';
 
-import './SignIn.css';
+import styles from './SignIn.module.css';
 
 function SignIn() {
   return (
     <>
       <Navbar logo="Images/argentBankLogo.png" />
-      <main className="main bg-dark">
+      <main className={`${styles.main} ${styles["bg-dark"]}`}>
         <SignInForm />
       </main>
       <Footer />

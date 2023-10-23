@@ -1,4 +1,4 @@
-import './App.css';
+import styles from './App.module.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home/Home';
 import SignIn from './Pages/SignIn/SignIn';
@@ -6,7 +6,7 @@ import User from './Pages/User/User';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
