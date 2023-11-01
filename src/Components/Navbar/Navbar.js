@@ -11,7 +11,7 @@ function Navbar(props) {
           alt="Argent Bank Logo"
           src={props.logo}
         />
-        <h1 className={styles['sr-only']}>Argent Bank</h1>
+        <h1 className='sr-only'>Argent Bank</h1>
       </a>
       <div>
         <a className={styles['main-nav-item']} href="./sign-in.html">

@@ -10,7 +10,7 @@ function User() {
   return (
     <>
       <Navbar logo="Images/argentBankLogo.png" />
-      <main className={`${styles.main} ${styles["bg-dark"]}`}>
+      <main className={`${styles["bg-dark"]} main`}>
         <Header />
         <Account 
             title="Argent Bank Checking (x8349)" 
@@ -24,7 +24,7 @@ function User() {
             transactionButton="View Transactions"/>       
         <Account 
             title="Argent Bank Credit Card (x8349)" 
-            amount="$184.30"
+            amount="184.30"
             amountDescription="Current Balance"
             transactionButton="View Transactions"/>
       </main>
