@@ -3,8 +3,8 @@ import styles from './Header.module.css';
 
 function Header() {
   const [isEditing, setIsEditing] = useState(false);
-  const [firstName, setFirstName] = useState('Tony');
-  const [lastName, setLastName] = useState('Jarvis');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   
   const handleEditClick = () => {
     setIsEditing(true);
