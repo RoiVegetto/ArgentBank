@@ -1,32 +1,22 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../Store/UserSlice';
-
-import styles from './SignInForm.module.css';
 import { useNavigate } from 'react-router-dom';
 
-export const SignInForm = () => {
+import styles from './SignInForm.module.css';
 
+export const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const {loading, error} = useSelector((state)=>state.user);
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const { loading, error } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleLoginEvent = (e) => {
     e.preventDefault();
-    let userCredentials = {
-      email, password
-    };
+    const userCredentials = { email, password };
+
     dispatch(loginUser(userCredentials))
       .unwrap()
       .then(() => {
@@ -35,8 +25,15 @@ export const SignInForm = () => {
       .catch((err) => {
         console.error('Failed to login:', err);
       });
-  }
-  
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   return (
     <section className={styles["sign-in-content"]}>
