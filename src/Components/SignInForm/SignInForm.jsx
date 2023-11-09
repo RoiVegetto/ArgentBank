@@ -55,8 +55,10 @@ export const SignInForm = () => {
         <button href="./user.html" className={styles["sign-in-button"]}>
           {loading?'loading...':'Login'}
         </button>
-        {error&&(
-          <div className='alert alert-danger' role='alert'>{error}</div>
+        {error && (
+          <div className='alert alert-danger' role='alert'>
+            {error.message ? error.message : 'An unknown error occurred'}
+          </div>
         )}
       </form>
     </section>

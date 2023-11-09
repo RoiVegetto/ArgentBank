@@ -31,13 +31,24 @@ export const updateUserProfile = createAsyncThunk(
           }
     
           const data = await response.json();
-          return data; // Assurez-vous que cela correspond au format de la réponse de votre API
+          return data;
         } catch (error) {
           return thunkAPI.rejectWithValue(error.message);
         }
       }
-    );  
+    );
 
+export const restoreUserSession = createAsyncThunk(
+  'user/restoreUserSession',
+  async (_, { dispatch }) => {
+    const token = localStorage.getItem('userToken');
+    if (token) {
+      dispatch(setToken(token));
+      dispatch(fetchUserProfile());
+    }
+  }
+);
+    
 export const loginUser = createAsyncThunk(
     'user/loginUser',
     async (userCredentials, { rejectWithValue }) => {
@@ -77,7 +88,6 @@ export const fetchUserProfile = createAsyncThunk(
       }
     }
   );
-  
 
 const userSlice = createSlice({
     name: 'user',
@@ -86,6 +96,11 @@ const userSlice = createSlice({
       token: null,
       userDetails: null,
       error: null,
+    },
+    reducers: {
+      setToken: (state, action) => {
+        state.token = action.payload;
+      },
     },
   extraReducers: (builder) => {
     builder
@@ -110,5 +125,7 @@ const userSlice = createSlice({
       });
   },
 });
+
+export const { setToken } = userSlice.actions;
 
 export default userSlice.reducer;

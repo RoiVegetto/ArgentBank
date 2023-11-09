@@ -1,0 +1,36 @@
+.main-nav-connected {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+  }
+
+.main-nav-item-container-connected {
+  display: flex;
+  justify-content: space-between;
+}
+  
+  .main-nav-item-connected {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    margin-right: 0.5rem;
+  }
+  
+  .main-nav-item-connected .router-link-exact-active {
+    color: #42b983;
+  }
+  
+  .main-nav-item-connected:hover {
+    text-decoration: underline;
+  }
+  
+  .main-nav-logo-connected {
+    display: flex;
+    align-items: center;
+  }
+  
+  .main-nav-logo-image-connected {
+    max-width: 100%;
+    width: 200px;
+  }
