@@ -20,7 +20,7 @@ export const SignInForm = () => {
     dispatch(loginUser(userCredentials))
       .unwrap()
       .then(() => {
-        navigate('/user.html');
+        navigate('/profile');
       })
       .catch((err) => {
         console.error('Failed to login:', err);
@@ -52,7 +52,7 @@ export const SignInForm = () => {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <button href="./user.html" className={styles["sign-in-button"]}>
+        <button href="./profile" className={styles["sign-in-button"]}>
           {loading?'loading...':'Login'}
         </button>
         {error && (

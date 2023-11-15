@@ -1,31 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserProfile, updateUserProfile } from '../../Store/UserSlice';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './Header.module.css';
+import { useUserProfile } from '../../Hook/useUserProfile';
 
 function Header() {
-  const dispatch = useDispatch();
-  const userDetails = useSelector((state) => state.user.userDetails);
+  const { userDetails, editableFirstName, setEditableFirstName, editableLastName, setEditableLastName, handleUserProfileUpdate } = useUserProfile();
   const [isEditing, setIsEditing] = useState(false);
-  const [editableFirstName, setEditableFirstName] = useState(userDetails?.firstName);
-  const [editableLastName, setEditableLastName] = useState(userDetails?.lastName);
   const token = useSelector((state) => state.user.token);
 
-  useEffect(() => {
-    if (!userDetails) {
-      dispatch(fetchUserProfile()).then(() => {
-        console.log('User profile fetched');
-      }).catch((error) => {
-        console.error('Error fetching user profile', error);
-      });
-    }
-  }, [userDetails, dispatch]);
-
-  useEffect(() => {
-    setEditableFirstName(userDetails?.firstName);
-    setEditableLastName(userDetails?.lastName);
-  }, [userDetails]);
-  
   const handleEditClick = () => {
     setIsEditing(true);
   };
@@ -36,37 +18,11 @@ function Header() {
     setIsEditing(false);
   };
   
-
   const handleSaveClick = async () => {
-    const userId = userDetails.id;
-    
-    if (userId && token) {
-      const updatedData = {
-        userId,
-        firstName: editableFirstName,
-        lastName: editableLastName,
-      };
-  
-      try {
-        const resultAction = await dispatch(updateUserProfile(updatedData));
-        if (updateUserProfile.fulfilled.match(resultAction)) {
-          setIsEditing(false);
-          dispatch(fetchUserProfile());
-        } else {
-          if (resultAction.payload) {
-            console.error('Update failed: ', resultAction.payload);
-          } else {
-            console.error('Update failed: ', resultAction.error);
-          }
-        }
-      } catch (error) {
-        console.error('Failed to update profile', error);
-      }
-    } else {
-      console.error('User ID or token is missing', userDetails);
-    }
+    await handleUserProfileUpdate(userDetails.id, token, editableFirstName, editableLastName);
+    setIsEditing(false);
   };
-  
+
   return (
     <div className={styles.header}>
       {isEditing ? (

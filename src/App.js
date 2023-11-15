@@ -27,17 +27,16 @@ function App() {
 
   const PrivateRoute = ({ children }) => {
     const token = useSelector((state) => state.user.token);
-    return token ? children : <Navigate to="/sign-in.html" />;
+    return token ? children : <Navigate to="/login" />;
   };
 
   return sessionRestored ? (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/index.html" element={<Home />} />
-        <Route path="/sign-in.html" element={<SignIn />} />
+        <Route path="/login" element={<SignIn />} />
         <Route
-          path="/user.html"
+          path="/profile"
           element={
             <PrivateRoute>
               <User />

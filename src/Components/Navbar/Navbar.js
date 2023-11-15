@@ -5,16 +5,16 @@ import styles from './Navbar.module.css';
 function Navbar(props) {
   return (
     <nav className={styles['main-nav']}>
-      <a className={styles['main-nav-logo']} href="./index.html">
+      <a className={styles['main-nav-logo']} href="./">
         <img
           className={styles['main-nav-logo-image']}
           alt="Argent Bank Logo"
           src={props.logo}
         />
-        <h1 className='sr-only'>Argent Bank</h1>
+        <h1 className="sr-only">Argent Bank</h1>
       </a>
       <div>
-        <a className={styles['main-nav-item']} href="./sign-in.html">
+        <a className={styles['main-nav-item']} href="./login">
           <i className="fa fa-user-circle"></i>
           Sign In
         </a>

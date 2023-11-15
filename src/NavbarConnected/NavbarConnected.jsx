@@ -13,12 +13,12 @@ function NavbarConnected(props) {
     const handleSignOut = () => {
       localStorage.removeItem('userToken');
       dispatch(setToken(null));
-      navigate('/sign-in.html');
+      navigate('/login');
     };
 
   return (
     <nav className={styles['main-nav-connected']}>
-      <a className={styles['main-nav-logo-connected']} href="./index.html">
+      <a className={styles['main-nav-logo-connected']} href="./profile">
         <img
           className={styles['main-nav-logo-image-connected']}
           alt="Argent Bank Logo"
@@ -27,7 +27,7 @@ function NavbarConnected(props) {
         <h1 className='sr-only'>Argent Bank</h1>
       </a>
       <div className={styles['main-nav-item-container-connected']}>
-        <a className={styles['main-nav-item-connected']} href="./user.html">
+        <a className={styles['main-nav-item-connected']} href="./profile">
           <i className="fa fa-user-circle"></i>
           {`${userDetails?.firstName}`}
         </a>
