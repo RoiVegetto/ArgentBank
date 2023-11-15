@@ -40,7 +40,7 @@ export const updateUserProfile = createAsyncThunk(
 export const restoreUserSession = createAsyncThunk(
   'user/restoreUserSession',
   async (_, { dispatch }) => {
-    const token = sessionStorage.getItem('userToken');
+    const token = localStorage.getItem('userToken') || sessionStorage.getItem('userToken');
     if (token) {
       dispatch(setToken(token));
       dispatch(fetchUserProfile());

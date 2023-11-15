@@ -9,9 +9,14 @@ export const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { loading, error } = useSelector((state) => state.user);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const handleRememberMeChange = (e) => {
+    setRememberMe(e.target.checked);
+  };
 
   const handleLoginEvent = (e) => {
     e.preventDefault();
@@ -19,7 +24,12 @@ export const SignInForm = () => {
 
     dispatch(loginUser(userCredentials))
       .unwrap()
-      .then(() => {
+      .then((token) => {
+        if (rememberMe) {
+          localStorage.setItem('userToken', token);
+        } else {
+          sessionStorage.setItem('userToken', token);
+        }
         navigate('/profile');
       })
       .catch((err) => {
@@ -48,10 +58,10 @@ export const SignInForm = () => {
       <label htmlFor="password">Password</label>
       <input type="password" id="password" value={password} onChange={handlePasswordChange} />
     </div>
-        <div className={styles["input-remember"]}>
-          <input type="checkbox" id="remember-me" />
-          <label htmlFor="remember-me">Remember me</label>
-        </div>
+    <div className={styles["input-remember"]}>
+      <input type="checkbox" id="remember-me" checked={rememberMe} onChange={handleRememberMeChange} />
+      <label htmlFor="remember-me">Remember me</label>
+    </div>
         <button href="./profile" className={styles["sign-in-button"]}>
           {loading?'loading...':'Login'}
         </button>
