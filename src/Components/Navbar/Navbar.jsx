@@ -31,11 +31,11 @@ function Navbar(props) {
         <div className={isLoggedIn ? styles['main-nav-item-container-connected'] : ''}>
           {isLoggedIn ? (
             <>
-              <a className={styles['main-nav-item-connected']} href="./profile">
+              <a className={styles['main-nav-item']} href="./profile">
                 <i className="fa fa-user-circle"></i>
                 {userDetails?.firstName}
               </a>
-              <div className={styles['main-nav-item-connected']} onClick={handleSignOut}>
+              <div className={styles['main-nav-item']} onClick={handleSignOut}>
                 <i className="fa fa-sign-out"></i>
                 Sign Out
               </div>

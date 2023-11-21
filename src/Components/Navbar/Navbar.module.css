@@ -1,4 +1,4 @@
-.main-nav, .main-nav-connected {
+.main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,6 +22,8 @@
   .main-nav-item {
     text-decoration: none;
     margin-right: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
   }
   
   .main-nav-item:hover {
