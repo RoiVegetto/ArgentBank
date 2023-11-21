@@ -21,12 +21,9 @@ function App() {
     dispatch(restoreUserSession()).then(() => setSessionRestored(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(restoreUserSession());
-  }, [dispatch]);
+  const token = useSelector((state) => state.user.token);
 
   const PrivateRoute = ({ children }) => {
-    const token = useSelector((state) => state.user.token);
     return token ? children : <Navigate to="/login" />;
   };
 

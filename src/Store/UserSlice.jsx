@@ -76,26 +76,29 @@ export const logoutUser = createAsyncThunk(
 );
 
 export const fetchUserProfile = createAsyncThunk(
-    'user/fetchProfile',
-    async (_, { getState, rejectWithValue }) => {
-      const token = getState().user.token;
-      if (!token) {
-        return rejectWithValue('No token found');
-      }
-      try {
-        const response = await axios({
-          method: 'post',
-          url: 'http://localhost:3001/api/v1/user/profile',
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-        return response.data;
-      } catch (error) {
-        return rejectWithValue(error.response ? error.response.data : 'An unknown error occurred');
-      }
+  'user/fetchProfile',
+  async (_, { getState, dispatch, rejectWithValue }) => {
+    const token = getState().user.token;
+    if (!token) {
+      return rejectWithValue('No token found');
     }
-  );
+    try {
+      const response = await axios({
+        method: 'post',
+        url: 'http://localhost:3001/api/v1/user/profile',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        dispatch(logoutUser());
+      }
+      return rejectWithValue(error.response ? error.response.data : 'An unknown error occurred');
+    }
+  }
+);
 
 const userSlice = createSlice({
     name: 'user',
