@@ -1,8 +1,13 @@
-.main-nav {
+.main-nav, .main-nav-connected {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
+  }
+  
+  .main-nav-item-container-connected {
+    display: flex;
+    justify-content: space-between;
   }
   
   .main-nav a {

@@ -66,6 +66,15 @@ export const loginUser = createAsyncThunk(
     }
 )
 
+export const logoutUser = createAsyncThunk(
+  'user/logout',
+  async (_, { dispatch }) => {
+    localStorage.removeItem('userToken');
+    sessionStorage.removeItem('userToken');
+    dispatch(setToken(null));
+  }
+);
+
 export const fetchUserProfile = createAsyncThunk(
     'user/fetchProfile',
     async (_, { getState, rejectWithValue }) => {
@@ -118,6 +127,10 @@ const userSlice = createSlice({
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
         console.log('fetchUserProfile.fulfilled', action.payload);
         state.userDetails = action.payload.body;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.userDetails = null;
+        state.token = null;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {
         state.error = action.payload || 'Could not fetch user profile';

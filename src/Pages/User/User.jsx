@@ -2,14 +2,14 @@ import React from 'react';
 import Footer from '../../Components/Footer/Footer';
 import Header from '../../Components/Header/Header';
 import Account from '../../Components/Account/Account';
-import NavbarConnected from '../../NavbarConnected/NavbarConnected';
+import Navbar from '../../Components/Navbar/Navbar';
 
 import styles from './User.module.css';
 
 function User() {
   return (
     <>
-      <NavbarConnected logo="Images/argentBankLogo.png" />
+      <Navbar logo="Images/argentBankLogo.png" />
       <main className={`${styles["bg-dark"]} main`}>
         <Header />
         <Account 
