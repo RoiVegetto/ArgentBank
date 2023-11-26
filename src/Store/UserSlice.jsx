@@ -128,7 +128,6 @@ const userSlice = createSlice({
         state.error = action.payload || 'Could not log in';
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        console.log('fetchUserProfile.fulfilled', action.payload);
         state.userDetails = action.payload.body;
       })
       .addCase(logoutUser.fulfilled, (state) => {
